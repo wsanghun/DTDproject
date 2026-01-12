@@ -1,0 +1,271 @@
+/* =============================
+   전체 화면
+============================= */
+.lobby-container {
+  width: 100%;
+  height: 100vh;
+
+  position: relative;
+  overflow: hidden;
+}
+
+.background-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 화면에 꽉 차게 */
+  z-index: -1; /* 뒤로 보내기 */
+  pointer-events: none;
+}
+/* =============================
+   현재 스테이지 배너 (Glass + Shimmer)
+============================= */
+.stage-banner {
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(6px);
+  border: 2px solid rgba(255, 255, 255, 0.7);
+
+  padding: 22px 110px;
+  border-radius: 22px;
+
+  font-size: 32px;
+  font-weight: bold;
+  color: #ffffff;
+
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+
+  cursor: pointer;
+  user-select: none;
+  overflow: hidden; /* ⭐ Shimmer 효과에 필수 */
+  transition: all 0.25s ease;
+}
+
+/* ⭐⭐ 흘러가는 빛 (Shimmer 효과) ⭐⭐ */
+.stage-banner::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 60%;
+  height: 100%;
+
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.55),
+    transparent
+  );
+
+  transform: skewX(-20deg);
+  animation: shimmer 2.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -120%;
+  }
+  100% {
+    left: 140%;
+  }
+}
+
+/* Hover 시 위로 떠오름 */
+.stage-banner:hover {
+  transform: translateX(-50%) translateY(-4px);
+  background: rgba(255, 255, 255, 0.65);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.55);
+}
+
+/* 클릭 시 눌림 */
+.stage-banner:active {
+  transform: translateX(-50%) translateY(1px);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.25);
+}
+
+/* =============================
+   메뉴 버튼 (도감 / 강화 / 보유타워)
+============================= */
+.menu-button {
+  position: absolute;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.button-content {
+  display: flex;
+  position: relative; /* ⭐ 이미지 위에 텍스트 올리기 위해 필요 */
+  width: 160px;
+  height: 160px;
+  flex-direction: column; /* 세로 정렬 → 이미지 위 / 글자 아래 */
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-icon {
+  width: 250px;
+  height: 250px;
+  object-fit: contain;
+}
+
+.menu-label {
+  position: absolute;
+  top: 40%;
+  left: 35%;
+  transform: translate(-50%, -50%); /* ⭐ 중앙 정렬 */
+
+  font-size: 22px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 2px 2px 6px black;
+  pointer-events: none; /* 클릭 방해 방지 */
+}
+
+.dex {
+  margin-left: 15%;
+  margin-top: -20%;
+}
+.menu-button:hover {
+  transform: scale(1.05);
+}
+
+/* 좌측(도감) */
+.menu-button.left {
+  left: 120px;
+  top: 35%;
+}
+
+/* 우측(강화) */
+.menu-button.right {
+  right: 110px;
+  top: 35%;
+}
+
+/* 하단(보유타워) */
+.menu-button.bottom {
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 170px;
+  padding: 25px 70px;
+  width: 240px;
+  font-size: 28px;
+}
+
+/* =============================
+   대표 타워 표시 영역
+============================= */
+.tower-display {
+  position: absolute;
+  top: 47%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.tower-image {
+  width: 420px; /* 중앙 이미지 더 크게 */
+  image-rendering: pixelated;
+}
+
+/* =============================
+   유저 정보 바 (아래 전체)
+============================= */
+.user-info-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+
+  background: rgba(255, 255, 255, 0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+
+  font-size: 26px;
+  font-weight: bold;
+  color: #1a1a1a; /* ⭐ 글씨 안 보이던 문제 해결 */
+  box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.35);
+}
+
+.user-info-bar span {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+/* =============================
+   서브 화면 (도감, 강화 등)
+============================= */
+.subscreen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 20, 30, 0.85);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 32px;
+}
+
+.subscreen button {
+  margin-top: 40px;
+  padding: 15px 40px;
+  background: #ffffff;
+  color: #000;
+  border-radius: 10px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.35);
+}
+
+.subscreen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(20, 20, 20, 0.8);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 32px;
+}
+
+.logout-btn {
+  position: absolute;
+  top: 10px; /* UserInfoPanel 바로 아래 느낌 */
+  right: 24px;
+
+  padding: 6px 14px;
+  border-radius: 14px;
+  border: none;
+
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  font-weight: 600;
+  font-size: 13px;
+
+  cursor: pointer;
+  z-index: 20;
+
+  transition: all 0.2s ease;
+}
+
+.logout-btn:hover {
+  background: rgba(255, 80, 80, 0.85);
+  box-shadow: 0 0 10px rgba(255, 80, 80, 0.6);
+}

@@ -1,0 +1,419 @@
+/* =========================
+   TowerGacha 버튼 전용 리셋
+   (subscreen button 덮어쓰기)
+========================= */
+.gacha-screen button {
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 20px !important;
+  box-shadow: none !important;
+  background: none;
+  border: none;
+}
+
+/* =========================
+   화면 전체 래퍼
+========================= */
+.gacha-screen {
+  position: relative; /* back 버튼 기준 */
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(2px);
+  padding: 28px 16px;
+  box-sizing: border-box;
+}
+
+/* =========================
+   돌아가기 버튼 (강화 페이지 통일)
+========================= */
+.gacha-back-btn {
+  position: absolute;
+  top: 22px;
+  left: 22px;
+  z-index: 3000;
+
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  padding: 8px 14px !important;
+
+  /* 🔥 핵심 수정 */
+  font-size: 10px;
+  line-height: 1 !important;
+  font-weight: 700;
+
+  color: #fff !important;
+  background: rgba(0, 0, 0, 0.55) !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  border-radius: 10px;
+
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+  transition: all 0.15s ease;
+}
+
+/* ESC 글자 더 작게 */
+.gacha-back-btn span {
+  font-size: 8px;
+  opacity: 0.75;
+}
+
+.gacha-back-btn:hover {
+  background: rgba(0, 0, 0, 0.7) !important;
+  transform: translateY(-1px);
+}
+
+.gacha-back-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+}
+
+/* =========================
+   헤더
+========================= */
+.gacha-header {
+  width: min(520px, 92vw);
+  display: flex;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+
+.gacha-header h2 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 800;
+  color: #fff;
+}
+
+/* =========================
+   재화 패널
+========================= */
+.gacha-currency-panel {
+  width: min(520px, 92vw);
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  margin-bottom: 14px;
+
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  font-size: 14px;
+}
+
+/* =========================
+   비용 안내
+========================= */
+.gacha-cost-info {
+  width: min(520px, 92vw);
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  margin-bottom: 16px;
+
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 14px;
+}
+
+.cost-block {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cost-block strong {
+  font-size: 14px;
+  font-weight: 800;
+}
+
+/* =========================
+   중앙 영역
+========================= */
+/* gacha-body는 세로 */
+.gacha-body {
+  width: min(520px, 92vw);
+  padding: 16px;
+  border-radius: 14px;
+  background: rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* 좌우 패널만 가로 */
+.gacha-layout {
+  display: flex;
+  gap: 16px;
+}
+
+/* =========================
+   왼쪽 영역 (티어 선택)
+========================= */
+.gacha-left {
+  width: 120px;
+  padding: 8px;
+  border-radius: 12px;
+
+  background: rgba(0, 0, 0, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  display: flex;
+  flex-direction: column;
+}
+
+.gacha-tierlist {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tier-tab {
+  padding: 6px 8px;
+  border-radius: 8px;
+
+  font-size: 13px; /* ✅ 정상 크기 */
+  font-weight: 700;
+  text-align: center;
+
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.9);
+
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.tier-tab:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.tier-tab.active {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.45);
+  color: #fff;
+}
+
+/* =========================
+   오른쪽 결과 영역
+========================= */
+.gacha-right {
+  flex: 1;
+  height: 360px; /* ⭐ 5개 기준 높이 */
+  padding: 14px;
+  border-radius: 14px;
+
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  display: flex;
+  flex-direction: column;
+}
+
+.gacha-result {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  overflow-y: auto; /* ⭐ 스크롤 */
+  padding-right: 6px; /* 스크롤 여백 */
+}
+
+.gacha-result::-webkit-scrollbar {
+  width: 6px;
+}
+
+.gacha-result::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 4px;
+}
+
+.gacha-result::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.gacha-result-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 15px;
+
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.gacha-empty {
+  opacity: 0.7;
+  font-size: 13px;
+}
+
+.gacha-result-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* 왼쪽: 이미지 + 이름 */
+.result-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.result-icon {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  border-radius: 8px;
+
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.result-name {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* 오른쪽 수량 */
+.result-qty {
+  font-size: 13px;
+  font-weight: 700;
+  opacity: 0.9;
+}
+
+.gacha-result-item {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.ultra-card {
+  border: 1px solid rgba(190, 120, 255, 0.6);
+  background: linear-gradient(
+    135deg,
+    rgba(120, 40, 200, 0.35),
+    rgba(60, 20, 120, 0.25)
+  );
+}
+
+.big-reward {
+  color: #ffd36a;
+  text-shadow: 0 0 6px rgba(255, 211, 106, 0.6);
+  font-weight: 800;
+}
+
+.ultra-reward {
+  color: #d38bff; /* 보라색 */
+  font-weight: 900;
+
+  text-shadow: 0 0 6px rgba(211, 139, 255, 0.6),
+    0 0 14px rgba(170, 80, 255, 0.45), 0 0 24px rgba(120, 40, 200, 0.35);
+
+  animation: ultraGlow 1.6s ease-in-out infinite alternate;
+}
+
+@keyframes ultraGlow {
+  from {
+    text-shadow: 0 0 6px rgba(211, 139, 255, 0.5),
+      0 0 14px rgba(170, 80, 255, 0.35);
+  }
+  to {
+    text-shadow: 0 0 10px rgba(211, 139, 255, 0.8),
+      0 0 22px rgba(170, 80, 255, 0.6), 0 0 34px rgba(120, 40, 200, 0.45);
+  }
+}
+
+/* =========================
+   하단 버튼
+========================= */
+.gacha-footer {
+  width: min(520px, 92vw);
+  margin-top: 16px;
+
+  display: flex;
+  gap: 12px;
+}
+
+.gacha-footer button {
+  flex: 1;
+  padding: 12px 14px !important;
+  border-radius: 12px;
+
+  font-size: 16px !important; /* 🔽 너무 크지 않게 */
+  font-weight: 700;
+
+  background: #fff !important;
+  color: #000 !important;
+  cursor: pointer;
+}
+
+.gacha-footer button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* 결제 수단: 좌우 아래, 전체 폭 */
+.gacha-paytype-inline {
+  padding: 14px;
+  border-radius: 14px;
+  background: rgba(0, 0, 0, 0.28);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.paytype-title {
+  font-size: 16px; /* ← 여기 */
+  font-weight: 800;
+}
+
+.hint {
+  font-size: 13px; /* ← 여기 */
+  opacity: 0.85;
+}
+
+.paytype-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.paytype-buttons button {
+  flex: none;
+  width: 120px;
+  padding: 8px 0;
+  font-size: 14px;
+  font-weight: 700;
+
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.9);
+  color: #000;
+
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, box-shadow 0.15s ease,
+    transform 0.12s ease;
+}
+
+.paytype-buttons button.active {
+  background: rgba(0, 0, 0, 0.75); /* 어두워짐 */
+  color: #fff;
+
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.6);
+}

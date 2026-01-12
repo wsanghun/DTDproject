@@ -1,0 +1,263 @@
+.inventory-container {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(4px);
+  color: white;
+
+  display: flex; /* ⭐ 가로 배치 */
+  flex-direction: row;
+  gap: 20px; /* 좌우 간격 */
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.left-panel {
+  flex: 1; /* 왼쪽이 약간 더 크게 */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  /* 왼쪽도 스크롤 허용 */
+}
+
+.right-panel {
+  flex: 1;
+  overflow-y: auto; /* 오른쪽은 그리드 전용 스크롤 */
+  padding-right: 10px; /* 스크롤바가 내용 가리지 않게 */
+}
+
+/* 제목 */
+.inventory-title {
+  font-size: 32px;
+  margin-bottom: 25px;
+}
+
+/* 스크롤 영역 */
+.inventory-scroll-area {
+  width: 100%;
+  max-width: 1200px;
+  height: calc(100vh - 520px); /* 기존보다 넉넉하게 */
+  overflow-y: auto;
+  padding-bottom: 60px;
+}
+
+.inventory-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  gap: 16px;
+  margin-top: 40px;
+  margin-left: 10px;
+  justify-items: center;
+}
+
+.detail-panel.vertical {
+  width: 55%;
+  max-width: 900px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 18px;
+  padding: 22px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.tower-name {
+  font-size: 32px;
+  font-weight: bold;
+  width: 100%;
+  overflow-wrap: break-word;
+}
+
+.tower-desc {
+  font-size: 17px;
+  opacity: 0.9;
+  margin-bottom: 6px;
+}
+
+/* ⭐ 2열 스탯 그리드 */
+.stats-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px 24px;
+  font-size: 17px;
+  margin-top: 10px;
+}
+
+.detail-left {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.detail-image-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.detail-img {
+  width: 280px;
+  height: 280px;
+  image-rendering: pixelated;
+}
+
+.detail-btn {
+  display: flex;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.detail-buttons {
+  margin-top: 10px;
+  display: flex;
+  gap: 12px;
+}
+
+.rep-btn,
+.enhance-btn {
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  border: none;
+}
+
+.rep-btn {
+  background: #ff9f2d;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.enhance-btn {
+  background: #6bb4ff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.enhance-btn.max {
+  background: #9d6bff;
+}
+
+/* 빨간 흔들림 효과 */
+.shake-error {
+  border: 2px solid #ff4444 !important;
+  animation: shake 0.3s ease-in-out;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-6px);
+  }
+  50% {
+    transform: translateX(6px);
+  }
+  75% {
+    transform: translateX(-6px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* 버튼 비활성화 */
+.enhance-btn.disabled {
+  background: #666;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* 강화 가능 카드 하이라이트 */
+.inventory-card.can-enhance {
+  box-shadow: 0 0 12px #4da6ff;
+}
+
+/* ⭐ 아래 디지몬 목록 */
+
+.inventory-card {
+  background: rgba(255, 255, 255, 0.12);
+  padding: 8px;
+  border-radius: 10px;
+  transition: 0.2s;
+}
+
+.inventory-card:hover {
+  transform: scale(1.1);
+}
+
+.tower-img {
+  width: 70px;
+  height: 70px;
+  image-rendering: pixelated;
+}
+
+/* ⭐ 돌아가기 버튼을 화면 왼쪽 아래 배치 */
+.back-btn-bottom {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  padding: 10px 18px;
+  background: rgba(0, 0, 0, 0.55);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.main-star {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: gold;
+  color: black;
+  font-size: 18px;
+  padding: 2px 6px;
+  border-radius: 50%;
+  font-weight: bold;
+  border: 2px solid white;
+}
+
+.selected {
+  transform: scale(1.15);
+  border: 3px solid white;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.9);
+}
+
+/* Tier 1 : White */
+.tier-1 {
+  border: 2px solid #f5f5f5;
+}
+
+/* Tier 2 : Blue */
+.tier-2 {
+  border: 2px solid #4da6ff;
+}
+
+/* Tier 3 : Purple */
+.tier-3 {
+  border: 2px solid #b066ff;
+}
+
+/* Tier 4 : Yellow */
+.tier-4 {
+  border: 2px solid #ffd42a;
+}
+
+/* 호버 효과 유지 */
+.inventory-card {
+  position: relative;
+  transition: 0.2s;
+}

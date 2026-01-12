@@ -1,0 +1,57 @@
+/* 로비 중앙 대표 디지몬 컨테이너 */
+.tower-display {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  animation: float 2s ease-in-out infinite;
+}
+
+/* 🔥 디지몬 이미지 - 클래스명 변경 */
+.tower-display-img {
+  width: 500px;
+  height: 500px;
+  image-rendering: pixelated;
+  animation: breathing 3s infinite ease-in-out;
+}
+
+/* 디지몬 이름 */
+.tower-name {
+  margin-top: 6px;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 2px 2px 4px black;
+}
+
+/* 부드럽게 떠있는 모션 */
+@keyframes float {
+  0% {
+    transform: translate(-50%, -50%) translateY(0px);
+  }
+  50% {
+    transform: translate(-50%, -50%) translateY(-8px);
+  }
+  100% {
+    transform: translate(-50%, -50%) translateY(0px);
+  }
+}
+
+/* 이미지 숨쉬기 효과 */
+@keyframes breathing {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

@@ -1,0 +1,124 @@
+/*-------------------------
+   로그인 & 회원가입 공통 스타일
+--------------------------*/
+
+.auth-container {
+  width: 100vw;
+  height: 100vh;
+  background: #1a1a1a;
+  color: white;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  gap: 15px;
+}
+
+h2 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.auth-input {
+  width: 280px;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  font-size: 16px;
+  outline: none;
+}
+
+.auth-btn {
+  width: 300px;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background-color: #1976d2;
+  font-size: 20px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.auth-btn:hover {
+  background-color: #0d47a1;
+}
+
+.auth-footer {
+  margin-top: 10px;
+}
+
+.auth-footer a {
+  color: #90caf9;
+  text-decoration: none;
+}
+
+.auth-footer a:hover {
+  text-decoration: underline;
+}
+
+/* ⭐ 화면 전체 덮는 어두운 배경 */
+.auth-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ⭐ 중앙 로그인 박스 */
+.auth-modal {
+  background: #222;
+  padding: 30px;
+  border-radius: 12px;
+  width: 320px;
+  text-align: center;
+}
+
+.auth-close-btn {
+  margin-top: 10px;
+  background: #555;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  color: white;
+  width: 100%;
+  cursor: pointer;
+}
+
+.auth-close-btn:hover {
+  background: #777;
+}
+
+.login-replace-box {
+  width: 300px;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.65);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  color: white;
+}
+
+.auth-cancel-btn {
+  width: 100%;
+  padding: 10px;
+  background: #777;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+}
+
+.auth-cancel-btn:hover {
+  background: #999;
+}

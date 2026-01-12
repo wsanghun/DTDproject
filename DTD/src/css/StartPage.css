@@ -1,0 +1,58 @@
+/* 전체 컨테이너 */
+.start-container {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 로고 */
+.start-logo {
+  width: 500px;
+  margin-bottom: 20px;
+}
+
+/* 버튼 박스 */
+.button-box {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
+
+/* 기본 버튼 스타일 */
+.start-btn {
+  width: 250px;
+  padding: 12px;
+  font-size: 20px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  background-color: #1976d2;
+  color: #fff;
+  font-weight: 600;
+}
+
+/* 링크 안의 글씨 기본 흰색 유지 */
+.start-btn a {
+  color: white;
+  text-decoration: none;
+}
+
+/* 로그인 상태 전용 버튼 */
+.game-start-btn {
+  background-color: #1976d2;
+}
+
+.logout-btn {
+  background-color: #d32f2f;
+}

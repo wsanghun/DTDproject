@@ -1,10 +1,39 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link id="favicon" rel="icon" type="image/png" sizes="16x16" href="1.png" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>dtd</title>
+
+    <script>
+      const faviconRoute = "/";
+      const faviconNames = ["1.png", "2.png", "3.png", "4.png"];
+      let idx = 0;
+
+      setTimeout(() => {
+        updateFavicon();
+        setInterval(updateFavicon, 500);
+      }, 500);
+
+      function updateFavicon() {
+        // 기존 link 제거
+        const old = document.querySelector("link[rel='icon']");
+        if (old) old.remove();
+
+        // 새 link 생성
+        const link = document.createElement("link");
+        link.rel = "icon";
+        link.type = "image/png";
+        link.sizes = "16x16";
+        link.href = `${faviconRoute}${faviconNames[idx]}?v=${Date.now()}`;
+
+        document.head.appendChild(link);
+
+        idx = (idx + 1) % faviconNames.length;
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
