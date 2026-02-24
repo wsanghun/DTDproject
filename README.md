@@ -1,4 +1,4 @@
-# 🛡️ DTD (Digimon Tower Defense)
+# DTD (Digimon Tower Defense)
 
 <p align="center">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white" />
@@ -89,8 +89,14 @@ npm run dev
 
 ---
 
-## ✨ 주요 특징
-* 🛠 **자체 제작 엔진**: HTML5 Canvas를 활용한 최적화된 게임 엔진
-* 🧬 **진화 시스템**: 1성부터 4성까지 이어지는 타워 진화 및 전략적 조합
-* 💎 **성장 요소**: 게임 내 재화로 타워를 영구적으로 강화하는 RPG 시스템
-* 🗺 **맵 에디터**: 브라우저에서 직접 맵을 디자인할 수 있는 내장 툴 제공
+## 🎮 주요 기능 (Key Features)
+
+*   **무설치 웹 게임**: 고용량 에셋 로딩 최적화 및 웹 표준 기술 활용
+*   **전략적 타워 건설**: 다양한 티어(1~4성)의 타워 조합 및 진화 시스템
+*   **나만의 성장 (RPG)**: 재화 파밍 (Gold/Diamond)으로 각 티어 타워를 레벨업
+*   **강력한 보안**: JWT 기반의 안전한 로그인 및 어뷰징 방지 트랜잭션 처리
+*   **자체 제작 툴**: 브라우저 내장형 **맵 에디터(Map Editor)**를 통한 빠른 레벨 디자인
+
+---
+
+## 
