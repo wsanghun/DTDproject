@@ -1,0 +1,55 @@
+package com.team.dtd.controller;
+
+import com.team.dtd.dto.*;
+import com.team.dtd.service.UserService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/users")
+@RequiredArgsConstructor
+public class UserController {
+
+    private final UserService userService;
+
+    @GetMapping("/me")
+    public ResponseEntity<UserInfoResponseDto> getMyInfo() {
+        return ResponseEntity.ok(userService.getMyInfo());
+    }
+
+    // ❌ getMyTowers 삭제
+
+    @GetMapping("/me/inventory")
+    public ResponseEntity<List<UserInventoryResponseDto>> getMyInventory() {
+        return ResponseEntity.ok(userService.getMyInventory());
+    }
+
+    // ❌ selectStarterTower 삭제
+
+    @PostMapping("/me/shop/gacha")
+    public ResponseEntity<GachaResponseDto> drawGacha(@RequestBody GachaRequestDto request) {
+        GachaResponseDto response = userService.drawGacha(request);
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/me/main-tower")
+    public ResponseEntity<String> setMainTower(@RequestBody SetMainTowerRequestDto request) {
+        userService.setMainTower(request);
+        return ResponseEntity.ok("대표 타워가 설정되었습니다.");
+    }
+
+    @PostMapping("/me/enhance-tower")
+    public ResponseEntity<String> enhanceTower(@RequestBody EnhanceTowerRequestDto request) {
+        userService.enhanceTower(request);
+        return ResponseEntity.ok("강화 성공! (재화 및 데이터 소모됨)");
+    }
+
+    @PostMapping("/me/shop/product")
+    public ResponseEntity<String> buyShopProduct(@RequestBody BuyProductRequestDto request) {
+        userService.buyShopProduct(request);
+        return ResponseEntity.ok("상품 구매가 완료되었습니다.");
+    }
+}

@@ -1,0 +1,99 @@
+.stage-node {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  z-index: 10;
+}
+
+.stage-node.locked {
+  opacity: 0.9;
+  cursor: not-allowed;
+}
+
+/* 버튼 박스 */
+.node-box {
+  padding: 10px 16px;
+  border-radius: 14px;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(4px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.45);
+  text-align: center;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.stage-node:not(.locked):hover .node-box {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.8);
+}
+
+/* 스테이지 번호 */
+.node-label {
+  font-size: 14px;
+  font-weight: 800;
+  color: #ffd86b;
+  margin-bottom: 2px;
+}
+
+/* 스테이지 이름 */
+.node-title {
+  font-size: 13px;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+/* 잠금 아이콘 */
+.lock {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  font-size: 18px;
+}
+
+/* 공통 아이콘 */
+.node-icon {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  font-size: 18px;
+  z-index: 20;
+}
+
+/* 잠김 */
+.node-icon.lock {
+  color: #ccc;
+}
+
+/* 클리어 */
+.node-icon.cleared {
+  color: #4caf50;
+}
+
+/* ======================
+   CLEARED 상태
+====================== */
+
+.stage-node.cleared .node-box {
+  border: 2px solid #4caf50;
+  background: rgba(0, 40, 0, 0.65);
+}
+
+.stage-node.cleared .node-label {
+  color: #9dff9d;
+}
+
+.stage-node.active .node-box {
+  box-shadow: 0 0 18px rgba(255, 215, 0, 0.8);
+  animation: pulse 1.4s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

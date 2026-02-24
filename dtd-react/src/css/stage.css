@@ -1,0 +1,559 @@
+/* ======================
+   게임 전체 컨테이너
+====================== */
+.game-container {
+  position: relative;
+  width: 1536px;
+  height: 900px;
+  margin: 0 auto;
+}
+
+/* 캔버스 */
+.game-container canvas {
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+/* ======================
+   우측 HUD (정보용)
+====================== */
+.hud {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  color: #fff;
+  font-family: Arial, sans-serif;
+  z-index: 10;
+}
+
+.hud-section {
+  background: rgba(0, 0, 0, 0.55);
+  padding: 8px 12px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.wave-info {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.wave-title {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.wave-timer {
+  font-size: 13px;
+  color: #ffd700;
+}
+
+/* ======================
+   배속 버튼
+====================== */
+.speed-control {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+}
+
+.speed-control button {
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: #333;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.speed-control button.active {
+  background: #ffd700;
+  color: #000;
+}
+
+/* ======================
+   좌측 상단 컨트롤 (일시정지 / 종료)
+====================== */
+.hud-left {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+
+  display: flex;
+  gap: 8px;
+
+  z-index: 30;
+}
+
+.hud-left button {
+  padding: 6px 10px;
+  background: rgba(0, 0, 0, 0.65);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.hud-left button:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* ======================
+   타워 선택 패널
+====================== */
+.tower-panel {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 12px;
+  z-index: 50;
+}
+
+/* 타워 카드 */
+.tower-card {
+  width: 96px;
+  height: 120px;
+
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 8px;
+  border: 2px solid transparent;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+}
+
+/* 선택된 카드 */
+.tower-card.selected {
+  border-color: #ffd700;
+}
+
+/* ⭐ 문제의 핵심: 이미지 크기 고정 */
+.tower-card img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  image-rendering: pixelated; /* 픽셀 게임 느낌 유지 */
+}
+
+/* 타워 이름 */
+.tower-name {
+  margin-top: 4px;
+  font-size: 12px;
+  color: #fff;
+  text-align: center;
+}
+
+/* 비용 */
+.tower-cost {
+  font-size: 11px;
+  color: #ffd700;
+}
+
+.ui-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none; /* 기본은 클릭 막기 */
+}
+
+.ui-layer * {
+  pointer-events: auto; /* 버튼만 클릭 가능 */
+}
+
+/* ======================
+   결과 오버레이
+====================== */
+.result-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 9999;
+
+  background: rgba(0, 0, 0, 0.75);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 중앙 패널 */
+.result-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  /* 🔥 박스 제거 */
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+
+  animation: result-pop 0.3s ease-out;
+}
+
+/* VICTORY / LOSE 이미지 */
+.result-title {
+  width: 600px; /* 🔥 여기서 크기 조절 */
+  max-width: 90vw;
+  margin-bottom: 24px;
+
+  image-rendering: pixelated;
+  filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.8));
+}
+
+/* 버튼 영역 */
+.result-buttons {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+}
+
+.result-buttons button {
+  padding: 10px 18px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  color: #fff;
+}
+
+.result-buttons button.primary {
+  background: #ffd700;
+  color: #000;
+  font-weight: bold;
+}
+
+.result-buttons button:hover {
+  filter: brightness(1.1);
+}
+
+.result-buttons.vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.result-rewards {
+  margin: 16px 0;
+  font-size: 15px;
+  color: #fff;
+}
+
+.reward-line {
+  margin: 6px 0;
+}
+
+.reward-line span {
+  color: #ffd700;
+  font-weight: bold;
+}
+
+.reward-items {
+  margin-top: 12px;
+}
+
+.reward-items-title {
+  margin-bottom: 6px;
+  font-weight: bold;
+}
+
+.reward-item {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.reward-first {
+  margin-top: 10px;
+  color: #00ffcc;
+  font-weight: bold;
+}
+
+.tower-detail-card {
+  position: absolute;
+  bottom: 120px; /* 하단 패널 위 */
+  left: 20px; /* 좌측 정렬 */
+  width: 240px;
+  background: rgba(0, 0, 0, 1);
+  border: 1px solid #555;
+  padding: 12px;
+  color: #fff;
+  z-index: 50;
+}
+
+.card-buttons.vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.card-buttons button {
+  padding: 8px 0;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.card-buttons button.evolve {
+  transition: all 0.2s ease;
+}
+
+.card-buttons button.evolve.active {
+  background: linear-gradient(180deg, #4caf50, #2e7d32);
+  color: #fff;
+  box-shadow: 0 0 8px rgba(76, 175, 80, 0.8);
+  animation: pulse 1.2s infinite;
+}
+
+.card-buttons button.evolve.disabled {
+  background: #444;
+  color: #aaa;
+  cursor: not-allowed;
+  opacity: 0.6;
+  filter: grayscale(100%);
+  box-shadow: none;
+}
+
+.card-buttons .lock {
+  margin-right: 6px;
+  font-size: 14px;
+}
+
+.evolve-condition {
+  font-size: 12px;
+  color: #ffb74d;
+  text-align: center;
+  margin-top: 4px;
+}
+
+.evolve-condition.danger {
+  color: #ff5252;
+  font-weight: bold;
+}
+
+.card-buttons button.danger {
+  background: #8e2424;
+  color: #fff;
+}
+
+/* ======================
+   미션 버튼
+====================== */
+.mission-button-wrapper {
+  position: absolute;
+  right: 12px;
+  bottom: 12px; /* ⭐ 타워 패널 위 */
+  z-index: 30;
+}
+
+.mission-button {
+  padding: 12px 18px;
+  border-radius: 10px;
+  background: #1e3a2f;
+  color: #fff;
+  font-weight: bold;
+  border: 2px solid #3cff9d;
+  cursor: pointer;
+}
+
+/* ======================
+   미션 패널
+====================== */
+.mission-panel {
+  position: absolute;
+  right: 12px;
+  bottom: 90px;
+  width: 250px;
+  background: rgba(0, 0, 0, 0.85);
+  border: 2px solid #3cff9d;
+  border-radius: 12px;
+  padding: 10px;
+  z-index: 40;
+  animation: slideUp 0.25s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.mission-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #3cff9d;
+  margin-bottom: 8px;
+}
+
+.mission-list {
+  display: grid;
+
+  gap: 6px;
+}
+
+.mission-item {
+  padding: 8px;
+  background: #222;
+  color: #fff;
+  border-radius: 6px;
+  border: 1px solid #555;
+  cursor: pointer;
+  position: relative;
+}
+
+.mission-item.locked {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.mission-item.cleared {
+  border-color: gold;
+}
+
+.mission-id {
+  font-weight: bold;
+}
+
+.tag {
+  position: absolute;
+  top: 2px;
+  right: 4px;
+  font-size: 10px;
+}
+
+.tag.clear {
+  color: gold;
+}
+
+.tag.lock {
+  color: #ff5555;
+}
+
+.mission-footer {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.mission-footer button.active {
+  background: #3cff9d;
+  color: #000;
+}
+
+.mission-timer {
+  position: absolute;
+  top: 70px; /* 보스 체력바 아래 */
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.7);
+  color: #ffd700;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 16px;
+  z-index: 9999; /* ⭐ 이거 핵심 */
+  pointer-events: none;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 rgba(76, 175, 80, 0);
+  }
+  50% {
+    box-shadow: 0 0 14px rgba(76, 175, 80, 1);
+  }
+  100% {
+    box-shadow: 0 0 0 rgba(76, 175, 80, 0);
+  }
+}
+
+/* 애니메이션 */
+@keyframes result-pop {
+  from {
+    transform: scale(0.85);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.bit-ui {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.bit-popup-layer {
+  position: absolute;
+  left: 100%;
+  top: 0;
+  margin-left: 6px;
+  pointer-events: none;
+}
+
+.bit-popup {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  color: #2ecc71;
+  font-weight: 800;
+  font-size: 13px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+
+  animation: bitPopupUp 0.85s ease-out forwards;
+}
+
+.bit-arrow {
+  font-size: 11px;
+}
+
+.mission-timer.mission {
+  background: rgba(0, 0, 0, 0.75);
+}
+
+.mission-timer.final-boss {
+  background: rgba(120, 0, 0, 0.85);
+  font-size: 18px;
+}
+
+@keyframes bitPopupUp {
+  0% {
+    opacity: 0;
+    transform: translateY(6px) scale(0.95);
+  }
+  15% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-22px) scale(1);
+  }
+}
